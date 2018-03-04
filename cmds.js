@@ -99,7 +99,11 @@ const playOne = () => {
 
 
         let quiz = array1[id];
-        rl.question(quiz.question, respu => {
+        let a = quiz.question;
+        let b = '? ';
+        let que = a.concat(b);
+
+        rl.question(`${colorize(quiz.question, 'red')}${colorize('? ', 'red')}`, respu => {
             let respuesta = respu.toLowerCase().trim();
             let answer2 = quiz.answer.toLowerCase().trim();
             if (respuesta === answer2) {
