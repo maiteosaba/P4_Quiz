@@ -62,11 +62,13 @@ exports.testCmd = (rl, id) => {
                 let answer1 = quiz.answer.toLowerCase().trim();
                     if (resp1 === answer1){
                         log ('Su respuesta es:');
-                        biglog('Correcto' , 'green');
+                        log ('Correcta');
+                        biglog('Correcta' , 'green');
                     }
                     else  {
                         log ('Su respuesta es:');
-                        biglog('Incorrecto' , 'red');
+                        log ('Incorrecta');
+                        biglog('Incorrecta' , 'red');
                     }
                     rl.prompt();
                 });
@@ -78,7 +80,11 @@ exports.testCmd = (rl, id) => {
     }
 };
 exports.playCmd = rl => {
-    
+    let score = 0;
+
+    let toBeResolved =
+
+
 
 
 };
