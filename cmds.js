@@ -80,13 +80,46 @@ exports.testCmd = (rl, id) => {
     }
 };
 exports.playCmd = rl => {
-    //let score = 0;
 
-    //let toBeResolved =
+    let score = 0;
+    let toBeResolved = []; //Array donde guardo los ids de todas las preguntas existentes
+    let array1 = model.getAll();
+    for (let i = 0; i < array1.length; i++){ //for que mete todos los ids existentes
+        toBeResolved.push(i);
+    }
+
+const playOne = () => {
+    if (toBeResolved.length === 0) {
+        log(`No hay nada más que preguntar.`);
+        log(`Fin del examen. Aciertos:`);
+        biglog(score, 'magenta');
+        rl.prompt();
+    } else {
+        let id = Math.floor(Math.random() * toBeResolved.length);
 
 
+        let quiz = array1[id];
+        rl.question(quiz.question, respu => {
+            let respuesta = respu.toLowerCase().trim();
+            let answer2 = quiz.answer.toLowerCase().trim();
+            if (respuesta === answer2) {
+                score = score + 1;
+                log(`CORRECTO - Lleva ${score} aciertos`);
+                toBeResolved.splice(id, 1);
+                array1.splice(id, 1);
+                playOne();
 
 
+            } else {
+                log(`INCORRECTO.`);
+                log(`Fin del examen. Aciertos:`);
+                biglog(score, 'magenta');
+                rl.prompt();
+            }
+        })
+    }
+}
+playOne();
 };
 exports.deleteCmd = (rl, id)=> {
     if (typeof id === "undefined"){
