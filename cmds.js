@@ -97,13 +97,12 @@ const playOne = () => {
     } else {
         let id = Math.floor(Math.random() * toBeResolved.length);
 
-
         let quiz = array1[id];
         let a1 = quiz.question;
         let b1 = '? ';
-        let que = a1.concat(b1);
+        let que1 = a1.concat(b1);
 
-        rl.question(que, respu => {
+        rl.question(colorize(que1, 'red'), respu => {
             let respuesta = respu.toLowerCase().trim();
             let answer2 = quiz.answer.toLowerCase().trim();
             if (respuesta === answer2) {
