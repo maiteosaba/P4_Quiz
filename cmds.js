@@ -106,7 +106,7 @@ exports.testCmd = (socket, rl, id) => {
             let a1 = a.toLowerCase().trim();
             let quiz1 = quiz.answer.toLowerCase().trim();
             if (a1 === quiz1){
-                log ('Su respuesta es: ');
+                log (socket, 'Su respuesta es: ');
                     log (socket, 'Correcta');
                     biglog (socket, 'Correcta' , 'green');
                 } else {
@@ -114,12 +114,12 @@ exports.testCmd = (socket, rl, id) => {
                     log (socket, 'Incorrecta');
                     biglog (socket, 'Incorrecta' , 'red');
                 }
-                return quiz;
+                //return quiz;
             });
     })
     .catch(Sequelize.ValidationError, error => {
-        errorlog(socket, 'El quiz es erroneo: ');
-        error.errorsforEach(({message}) => errorlog (socket, message));
+       errorlog(socket, 'El quiz es erroneo: ');
+       error.errorsforEach(({message}) => errorlog (socket, message));
     })
     .catch(error => {
         errorlog(socket, error.message);
